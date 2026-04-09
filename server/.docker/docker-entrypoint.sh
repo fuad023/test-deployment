@@ -1,12 +1,10 @@
 #!/bin/bash
 set -e
 
-which mysql
-which mysqladmin
-which mariadb
-which mariadb-admin
-
+echo "DB_CONNECTION=$DB_CONNECTION"
 echo "DB_HOST=$DB_HOST"
+echo "DB_PORT=$DB_PORT"
+echo "DB_DATABASE=$DB_DATABASE"
 echo "DB_USERNAME=$DB_USERNAME"
 echo "DB_PASSWORD=$DB_PASSWORD"
 
