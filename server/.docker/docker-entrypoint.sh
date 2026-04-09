@@ -1,19 +1,10 @@
 #!/bin/bash
 set -e
 
-export DB_HOST=${DB_HOST:-$MYSQLHOST}
-export DB_PORT=${DB_PORT:-$MYSQLPORT}
-export DB_DATABASE=${DB_DATABASE:-$MYSQLDATABASE}
-export DB_USERNAME=${DB_USERNAME:-$MYSQLUSER}
-export DB_PASSWORD=${DB_PASSWORD:-$MYSQLPASSWORD}
-
 which mysql
 which mysqladmin
 which mariadb
 which mariadb-admin
-
-mysql --version
-mariadb --version
 
 echo "DB_HOST=$DB_HOST"
 echo "DB_USERNAME=$DB_USERNAME"
