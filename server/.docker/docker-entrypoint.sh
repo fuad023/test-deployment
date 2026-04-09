@@ -3,6 +3,10 @@ set -e
 
 echo "=== Laravel Docker Entrypoint ==="
 
+echo $DB_HOST
+echo $DB_USERNAME
+echo $DB_PASSWORD
+
 # Wait for MySQL to be ready
 echo "Waiting for MySQL connection..."
 while ! mariadb-admin ping -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" --silent 2>/dev/null; do
