@@ -1,13 +1,13 @@
 #!/bin/bash
 set -e
 
-echo "=== Laravel Docker Entrypoint ==="
+export DB_HOST=${DB_HOST:-$MYSQLHOST}
+export DB_PORT=${DB_PORT:-$MYSQLPORT}
+export DB_DATABASE=${DB_DATABASE:-$MYSQLDATABASE}
+export DB_USERNAME=${DB_USERNAME:-$MYSQLUSER}
+export DB_PASSWORD=${DB_PASSWORD:-$MYSQLPASSWORD}
 
-echo "below"
-echo $DB_HOST
-echo $DB_USERNAME
-echo $DB_PASSWORD
-echo "above"
+echo "=== Laravel Docker Entrypoint ==="
 
 # Wait for MySQL to be ready
 echo "Waiting for MySQL connection..."
