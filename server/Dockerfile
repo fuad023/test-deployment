@@ -16,10 +16,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-COPY composer.json composer.lock ./
+COPY server/composer.json server/composer.lock ./
 RUN composer install --no-scripts --no-autoloader --prefer-dist
 
-COPY . .
+COPY server/ ./
 
 RUN composer dump-autoload --optimize
 
@@ -28,9 +28,9 @@ RUN mkdir -p storage/logs bootstrap/cache \
     && chmod -R 755 /var/www/storage \
     && chmod -R 755 /var/www/bootstrap/cache
 
-COPY .docker/nginx.conf /etc/nginx/sites-available/default
+COPY server/.docker/nginx.conf /etc/nginx/sites-available/default
 
-COPY .docker/docker-entrypoint.sh /docker-entrypoint.sh
+COPY server/.docker/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 8000
