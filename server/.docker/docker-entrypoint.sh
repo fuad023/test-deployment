@@ -13,48 +13,48 @@ echo "above"
 echo "=== Laravel Docker Entrypoint ==="
 
 # Wait for MySQL to be ready
-# echo "Waiting for MySQL connection..."
-# while ! mariadb-admin ping -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" --silent 2>/dev/null; do
-#     echo "Retrying MySQL connection in 2 seconds..."
-#     sleep 2
-# done
-# echo "✓ MySQL is ready!"
+echo "Waiting for MySQL connection..."
+while ! mariadb-admin ping -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" --silent 2>/dev/null; do
+    echo "Retrying MySQL connection in 2 seconds..."
+    sleep 2
+done
+echo "✓ MySQL is ready!"
 
-# # Create database if it doesn't exist
-# echo "Ensuring database exists..."
-# mariadb -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS \`$DB_DATABASE\`;"
-# echo "✓ Database ready!"
+# Create database if it doesn't exist
+echo "Ensuring database exists..."
+mariadb -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS \`$DB_DATABASE\`;"
+echo "✓ Database ready!"
 
-# # Run schema files
-# if [ -d "/var/www/database/schema" ]; then
-#     echo "Executing schema files..."
-#     for file in /var/www/database/schema/*.sql; do
-#         if [ -f "$file" ]; then
-#             echo "  → Running: $(basename $file)"
-#             mariadb -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" "$DB_DATABASE" < "$file"
-#         fi
-#     done
-#     echo "✓ Schema initialization complete!"
-# fi
+# Run schema files
+if [ -d "/var/www/database/schema" ]; then
+    echo "Executing schema files..."
+    for file in /var/www/database/schema/*.sql; do
+        if [ -f "$file" ]; then
+            echo "  → Running: $(basename $file)"
+            mariadb -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" "$DB_DATABASE" < "$file"
+        fi
+    done
+    echo "✓ Schema initialization complete!"
+fi
 
-# # Run seed files (data population)
-# if [ -d "/var/www/database/seed" ]; then
-#     echo "Executing seed files..."
-#     for file in /var/www/database/seed/*.sql; do
-#         if [ -f "$file" ]; then
-#             echo "  → Seeding: $(basename $file)"
-#             mariadb -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" "$DB_DATABASE" < "$file"
-#         fi
-#     done
-#     echo "✓ Database seeding complete!"
-# fi
+# Run seed files (data population)
+if [ -d "/var/www/database/seed" ]; then
+    echo "Executing seed files..."
+    for file in /var/www/database/seed/*.sql; do
+        if [ -f "$file" ]; then
+            echo "  → Seeding: $(basename $file)"
+            mariadb -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" "$DB_DATABASE" < "$file"
+        fi
+    done
+    echo "✓ Database seeding complete!"
+fi
 
-# # Run any init.sh script if present
-# if [ -f "/var/www/database/init.sh" ]; then
-#     echo "Running custom init.sh script..."
-#     bash /var/www/database/init.sh
-#     echo "✓ Custom initialization complete!"
-# fi
+# Run any init.sh script if present
+if [ -f "/var/www/database/init.sh" ]; then
+    echo "Running custom init.sh script..."
+    bash /var/www/database/init.sh
+    echo "✓ Custom initialization complete!"
+fi
 
 # Clear and optimize caches
 echo "Clearing caches..."
