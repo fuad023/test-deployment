@@ -1,0 +1,4 @@
+CREATE TABLE persons (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(32)
+);
