@@ -1,0 +1,9 @@
+.env
+.gitignore
+.editorconfig
+README.md
+.DS_Store
+*.log
+vendor/
+tests/
+.phpunit.result.cache
