@@ -3,9 +3,11 @@ set -e
 
 echo "=== Laravel Docker Entrypoint ==="
 
+echo "below"
 echo $DB_HOST
 echo $DB_USERNAME
 echo $DB_PASSWORD
+echo "above"
 
 # Wait for MySQL to be ready
 echo "Waiting for MySQL connection..."
