@@ -7,6 +7,18 @@ export DB_DATABASE=${DB_DATABASE:-$MYSQLDATABASE}
 export DB_USERNAME=${DB_USERNAME:-$MYSQLUSER}
 export DB_PASSWORD=${DB_PASSWORD:-$MYSQLPASSWORD}
 
+which mysql
+which mysqladmin
+which mariadb
+which mariadb-admin
+
+mysql --version
+mariadb --version
+
+echo "DB_HOST=$DB_HOST"
+echo "DB_USERNAME=$DB_USERNAME"
+echo "DB_PASSWORD=$DB_PASSWORD"
+
 echo "=== Laravel Docker Entrypoint ==="
 
 # Wait for MySQL to be ready
