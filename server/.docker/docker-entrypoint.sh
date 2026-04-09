@@ -5,7 +5,7 @@ echo "=== Laravel Docker Entrypoint ==="
 
 # Wait for MySQL to be ready
 echo "Waiting for MySQL connection..."
-mysqladmin ping -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" --silent
+# mysqladmin ping -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" --silent
 # while ! mysqladmin ping -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" --silent 2>/dev/null; do
 #     echo "Retrying MySQL connection in 2 seconds..."
 #     sleep 2
